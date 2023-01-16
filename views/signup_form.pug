@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p(style='color: red;') 
+  p(style='color: ;') 
     b #{undefined===notice ? '' : notice}
   form(method='POST' action='')
     div.form-group
@@ -15,12 +15,15 @@ block content
       label(for='password') Password:
       input#password.form-control(type='password', name='password' required='true')
     div.form-group
+      label(for='confirm_password') Confirm Password:
+      input#confirm_password.form-control(type='password', name='confirm_password' required='true')
+    div.form-group
       div(style='display: inline;')
         input.checkbox-input(type='checkbox', name='is_admin', id='is_admin', checked=(undefined===user ? false : user.is_admin))
         label(for='is_admin', style='padding-left: 5px;') is admin?
     button.btn.btn-primary(type='submit') Sign Up
 
   if errors
-    ul
+    ul(style='margin-top: 16px;')
       for error in errors
         li!= error.msg
