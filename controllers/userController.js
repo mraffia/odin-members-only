@@ -7,10 +7,26 @@ const { body, validationResult } = require("express-validator");
 
 
 exports.index = (req, res, next) => {
-    res.render("index", { 
-        title: "Members Only", 
-        user: req.user 
-    });
+    async.parallel(
+        {
+            messages(callback) {
+                Message.find({})
+                    .sort({ timestamp: -1 })
+                    .populate("user")
+                    .exec(callback);
+            },
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+            res.render("index", {
+                title: "Members Only",
+                messages: results.messages,
+                user: req.user
+            });
+        }
+    );
 };
 
 exports.user_signup_get = (req, res, next) => {
