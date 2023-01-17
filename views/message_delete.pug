@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  p #[strong Author: ] #{message.user.name}
+  p #[strong Title: ] #{message.title}
+  p #[strong Message text: ] #{message.message_text}
+  p #[strong Date: ] #{message.timestamp}
+
+  p Do you really want to delete this message?
+
+  form(method='POST' action='')
+    div.form-group
+      input#messageid.form-control(type='hidden',name='messageid', required='true', value=message._id )
+    button.btn.btn-danger(type='submit') Delete
