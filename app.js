@@ -74,6 +74,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.post(
+  "/login",
+  passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login"
+  })
+);
+
+app.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
