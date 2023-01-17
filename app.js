@@ -13,7 +13,11 @@ const bcrypt = require("bcryptjs");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const compression = require("compression");
+
 const app = express();
+
+app.use(compression());
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
