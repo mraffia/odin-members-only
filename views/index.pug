@@ -33,10 +33,10 @@ block content
       ul
         each message in messages
           li(style="margin-bottom: 14px;")
-            |
-            b #{message.user.name}: 
-            | "#{message.message_text}"
-            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
+            | #[strong Title: ] #{message.title}
+            br
+            | #[strong Message: ] "#{message.message_text}"
+            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted} by #{message.user.name}
             |
             a(href="/message-delete/" + message._id) Delete Message
         else
@@ -45,10 +45,10 @@ block content
       ul
         each message in messages
           li(style="margin-bottom: 14px;")
-            |
-            b #{message.user.name}: 
-            | "#{message.message_text}"
-            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
+            | #[strong Title: ] #{message.title}
+            br
+            | #[strong Message: ] "#{message.message_text}"
+            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted} by #{message.user.name}
         else
           li There are no messages.
     else
@@ -56,25 +56,25 @@ block content
         each message in messages
           if message.user.username == user.username
             li(style="margin-bottom: 14px;")
-              |
-              b #{message.user.name}: 
-              | "#{message.message_text}"
-              div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
+              | #[strong Title: ] #{message.title}
+              br
+              | #[strong Message: ] "#{message.message_text}"
+              div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted} by #{message.user.name}
           else
             li(style="margin-bottom: 14px;")
-              |
-              b SECRET USER: 
-              | "#{message.message_text}"
-              div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE
+              | #[strong Title: ] #{message.title}
+              br
+              | #[strong Message: ] "#{message.message_text}"
+              div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE by SECRET USER
         else
           li There are no messages.
   else
     ul
       each message in messages
         li(style="margin-bottom: 14px;")
-          |
-          b SECRET USER: 
-          | "#{message.message_text}"
-          div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE
+          | #[strong Title: ] #{message.title}
+          br
+          | #[strong Message: ] "#{message.message_text}"
+          div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE by SECRET USER
       else
         li There are no messages.
