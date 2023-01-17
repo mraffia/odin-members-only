@@ -1,11 +1,15 @@
 const User = require("../models/user");
+const Message = require("../models/message");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 
 
 exports.index = (req, res, next) => {
-    res.render("index", { title: "Members Only" });
+    res.render("index", { 
+        title: "Members Only", 
+        user: req.user 
+    });
 };
 
 exports.user_signup_get = (req, res, next) => {
@@ -109,10 +113,10 @@ exports.user_logout_get = (req, res, next) => {
     res.send("NOT IMPLEMENTED");
 };
 
-exports.user_join_the_club_get = (req, res, next) => {
+exports.user_jointheclub_get = (req, res, next) => {
     res.send("NOT IMPLEMENTED");
 };
 
-exports.user_join_the_club_post = (req, res, next) => {
+exports.user_jointheclub_post = (req, res, next) => {
     res.send("NOT IMPLEMENTED");
 };

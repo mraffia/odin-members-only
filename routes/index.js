@@ -19,9 +19,9 @@ router.post("/login", user_controller.user_login_post);
 
 router.get("/logout", user_controller.user_logout_get);
 
-router.get("/join-the-club", user_controller.user_join_the_club_get);
+router.get("/jointheclub", user_controller.user_jointheclub_get);
 
-router.post("/join-the-club", user_controller.user_join_the_club_post);
+router.post("/jointheclub", user_controller.user_jointheclub_post);
 
 /// MESSAGE ROUTES ///
 
