@@ -27,35 +27,55 @@ block content
     p Don't have an account? 
       a(href="/signup") Sign Up!
 
-  if user.is_admin
-    ul
-      each message in messages
+  h4(style="margin-top: 40px;") Recent Messages
+  if user
+    if user.is_admin
+      ul
+        each message in messages
           li(style="margin-bottom: 14px;")
             |
-            b #{message.user}: 
-            | "#{message.text}" 
-            br
-            | 
+            b #{message.user.name}: 
+            | "#{message.message_text}"
             div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
             |
             a(href="/message-delete/" + message._id) Delete Message
-  else if user.is_member
-    ul
-      each message in messages
-        li(style="margin-bottom: 14px;")
-          |
-          b #{message.user}: 
-          | "#{message.text}" 
-          br
-          | 
-          div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+        else
+          li There are no messages.
+    else if user.is_member
+      ul
+        each message in messages
+          li(style="margin-bottom: 14px;")
+            |
+            b #{message.user.name}: 
+            | "#{message.message_text}"
+            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+        else
+          li There are no messages.
+    else
+      ul
+        each message in messages
+          if message.user.username == user.username
+            li(style="margin-bottom: 14px;")
+              |
+              b #{message.user.name}: 
+              | "#{message.message_text}"
+              div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+          else
+            li(style="margin-bottom: 14px;")
+              |
+              b SECRET USER: 
+              | "#{message.message_text}"
+              div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE
+
+        else
+          li There are no messages.
   else
     ul
       each message in messages
         li(style="margin-bottom: 14px;")
           |
           b SECRET USER: 
-          | "#{message.text}" 
-          br
-          | 
-          div.message-date(style="font-size: 12px; color: #808080;") At SECRET TIME.
+          | "#{message.message_text}"
+          div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE
+      else
+        li There are no messages.
