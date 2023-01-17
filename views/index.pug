@@ -2,6 +2,20 @@ extends layout
 
 block content
   h1= title
-  p Welcome to 
-    b #{title} 
-    | website
+  
+  if user
+    p Welcome back #{user.name} (
+      b #{!user.is_admin ? "Admin" : (!user.is_member ? "Member" : "User")}
+      | )!
+    if !user.is_member && !user.is_admin
+      p #[strong You are not a club member. ] Wanna become one?  
+        a(href="/join-the-club") Join the club
+    p
+      a(href="/message-create") Create a message
+    p
+      a(href="/logout") Log Out
+  else
+    p To add a post or become a club member, 
+      a(href="/login") Log In
+    p Don't have an account? 
+      a(href="/signup") Sign Up
