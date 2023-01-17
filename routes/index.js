@@ -15,13 +15,13 @@ router.post("/signup", user_controller.user_signup_post);
 
 router.get("/login", user_controller.user_login_get);
 
-router.post("/login", user_controller.user_login_post);
+// router.post("/login", user_controller.user_login_post);
 
-router.get("/logout", user_controller.user_logout_get);
+// router.get("/logout", user_controller.user_logout_get);
 
-router.get("/jointheclub", user_controller.user_jointheclub_get);
+router.get("/jointheclub/:id", user_controller.user_jointheclub_get);
 
-router.post("/jointheclub", user_controller.user_jointheclub_post);
+router.post("/jointheclub/:id", user_controller.user_jointheclub_post);
 
 /// MESSAGE ROUTES ///
 
