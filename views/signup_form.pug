@@ -3,6 +3,9 @@ extends layout
 block content
   h1= title
 
+  p(style='color: red;') 
+    b #{undefined===notice ? '' : notice}
+
   form(method='POST' action='')
     div.form-group
       label(for='name') Name:
@@ -27,6 +30,3 @@ block content
       for error in errors
         li(style='color: red;')
             b !{error.msg}
-
-  p(style='color: red; margin-top: 16px;') 
-    b #{undefined===notice ? '' : notice}

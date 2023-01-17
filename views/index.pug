@@ -5,17 +5,24 @@ block content
   
   if user
     p Welcome back #{user.name} (
-      b #{!user.is_admin ? "Admin" : (!user.is_member ? "Member" : "User")}
+      b #{user.is_admin ? "Admin" : (user.is_member ? "Member" : "User")}
       | )!
-    if !user.is_member && !user.is_admin
-      p #[strong You are not a club member. ] Wanna become one?  
-        a(href="/jointheclub") Join the club
+
+    if user.is_admin
+      p #[strong You are an admin. ] You can see create and all messages including its author and date. You can also delete messages.
+    else if user.is_member
+      p #[strong You are an admin. ] You can see create and all messages including its author and date.
+    else
+      p #[strong You are not a club member. ] While you can create messages, you can't see the author and date of messages created by other users.
+      p Wanna become a club member? 
+        a(href="/jointheclub") Join the club.
+    
     p
-      a(href="/message-create") Create a message
+      a(href="/message-create") Create a new message
     p
       a(href="/logout") Log Out
   else
-    p To add a post or become a club member, 
-      a(href="/login") Log In
+    p To add a message or become a club member, 
+      a(href="/login") Log In.
     p Don't have an account? 
-      a(href="/signup") Sign Up
+      a(href="/signup") Sign Up!
