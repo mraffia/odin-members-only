@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Message = require("../models/message");
+const async = require("async");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
@@ -114,9 +115,68 @@ exports.user_login_get = (req, res, next) => {
 // };
 
 exports.user_jointheclub_get = (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    res.render("jointheclub_form", { title: "Join The Club" });
 };
 
-exports.user_jointheclub_post = (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
-};
+exports.user_jointheclub_post = [
+    // Validate and sanitize fields.
+    body("answer", "Answer must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+  
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+    
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/error messages.
+            res.render("jointheclub_form", {
+                title: "Join the Club",
+                errors: errors.array(),
+            });
+            return;
+        } else {
+            const theanswer = req.body.answer.toLowerCase();
+
+            if (theanswer != "the future" && theanswer != "future") {
+                res.render("jointheclub_form", {
+                    title: "Join The Club",
+                    notice: "Wrong answer! Try again!",
+                });
+                return;
+            }
+        }
+
+        async.parallel(
+            {
+                user(callback) {
+                    User.findById(req.params.id).exec(callback);
+                },
+            },
+            (err, results) => {
+                if (err) {
+                    return next(err);
+                }
+
+                const user = new User({
+                    name: results.user.name,
+                    username: results.user.username,
+                    password: results.user.password,
+                    is_member: true,
+                    is_admin: results.user.is_admin,
+                    _id: req.params.id,
+                });
+
+                User.findByIdAndUpdate(req.params.id, user, {}, (err, theuser) => {
+                    if (err) {
+                      return next(err);
+                    }
+              
+                    res.redirect("/");
+                });
+            }
+        );
+    },
+];
