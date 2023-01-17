@@ -36,7 +36,7 @@ block content
             |
             b #{message.user.name}: 
             | "#{message.message_text}"
-            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
             |
             a(href="/message-delete/" + message._id) Delete Message
         else
@@ -48,7 +48,7 @@ block content
             |
             b #{message.user.name}: 
             | "#{message.message_text}"
-            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+            div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
         else
           li There are no messages.
     else
@@ -59,14 +59,13 @@ block content
               |
               b #{message.user.name}: 
               | "#{message.message_text}"
-              div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp}
+              div.message-date(style="font-size: 12px; color: #808080;") At #{message.timestamp_formatted}
           else
             li(style="margin-bottom: 14px;")
               |
               b SECRET USER: 
               | "#{message.message_text}"
               div.message-date(style="font-size: 12px; color: #808080;") At SECRET DATE
-
         else
           li There are no messages.
   else
