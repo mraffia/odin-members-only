@@ -14,7 +14,9 @@ block content
       label(for='title') Title:
       input#title.form-control(type='text', placeholder='Message title' name='title' required='true' value=(undefined===message ? '' : message.title))
     div.form-group
-      label(for='message_text') Message:
+      label(for='message_text') Message Text:
       textarea#message_text.form-control(type='textarea', placeholder='Message text' name='message_text' required='true') #{undefined===message ? '' : message.message_text}
+    div.form-group
+      input#userid.form-control(type='hidden', name='userid', required='true', value=user._id)
     button.btn.btn-primary(type='submit') Submit
 
