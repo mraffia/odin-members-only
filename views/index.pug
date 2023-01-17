@@ -9,13 +9,13 @@ block content
       | )!
 
     if user.is_admin
-      p #[strong You are an admin. ] You can see create and all messages including its author and date. You can also delete messages.
+      p #[strong You are an admin. ] You can create and see all messages including its author and date. You can also delete messages.
     else if user.is_member
-      p #[strong You are an admin. ] You can see create and all messages including its author and date.
+      p #[strong You are a club member. ] You can create and see all messages including its author and date.
     else
       p #[strong You are not a club member. ] While you can create messages, you can't see the author and date of messages created by other users.
       p Wanna become a club member? 
-        a(href="/jointheclub") Join the club.
+        a(href="/jointheclub/" + user._id) Join the club.
     
     p
       a(href="/message-create") Create a new message
