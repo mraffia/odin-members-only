@@ -23,6 +23,7 @@ router.get("/jointheclub/:id", user_controller.user_jointheclub_get);
 
 router.post("/jointheclub/:id", user_controller.user_jointheclub_post);
 
+
 /// MESSAGE ROUTES ///
 
 router.get("/message-create/:userid", message_controller.message_create_get);
@@ -32,5 +33,6 @@ router.post("/message-create/:userid", message_controller.message_create_post);
 router.get("/message-delete/:id", message_controller.message_delete_get);
 
 router.post("/message-delete/:id", message_controller.message_delete_post);
+
 
 module.exports = router;
