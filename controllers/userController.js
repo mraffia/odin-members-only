@@ -90,7 +90,7 @@ exports.user_signup_post = [
                                 if (err) { 
                                     return next(err);
                                 }
-                                res.redirect("/");
+                                res.redirect("/login");
                             });
                         }
                     });
@@ -102,16 +102,16 @@ exports.user_signup_post = [
   
 
 exports.user_login_get = (req, res, next) => {
-    res.send(`NOT IMPLEMENTED`);
+    res.render("login_form", { title: "Log In" });
 };
 
-exports.user_login_post = (req, res, next) => {
-    res.send(`NOT IMPLEMENTED`);
-};
+// exports.user_login_post = (req, res, next) => {
+//     res.send("NOT IMPLEMENTED");
+// };
 
-exports.user_logout_get = (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
-};
+// exports.user_logout_get = (req, res, next) => {
+//     res.send("NOT IMPLEMENTED");
+// };
 
 exports.user_jointheclub_get = (req, res, next) => {
     res.send("NOT IMPLEMENTED");
