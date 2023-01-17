@@ -5,6 +5,12 @@ block content
 
   p(style='color: red;') 
     b #{undefined===notice ? '' : notice}
+  
+  if errors
+    ul(style='margin-top: 10px;')
+      for error in errors
+        li(style='color: red;')
+            b !{error.msg}
 
   form(method='POST' action='')
     div.form-group
@@ -25,8 +31,3 @@ block content
         label(for='is_admin', style='padding-left: 8px;') is Admin
     button.btn.btn-primary(type='submit') Sign Up
 
-  if errors
-    ul(style='margin-top: 16px;')
-      for error in errors
-        li(style='color: red;')
-            b !{error.msg}

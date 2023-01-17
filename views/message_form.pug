@@ -3,6 +3,12 @@ extends layout
 block content
   h1= title
 
+  if errors
+    ul(style='margin-top: 10px;')
+      for error in errors
+        li(style='color: red;')
+            b !{error.msg}
+
   form(method='POST' action='')
     div.form-group
       label(for='title') Title:
@@ -12,8 +18,3 @@ block content
       textarea#message_text.form-control(type='textarea', placeholder='Message text' name='message_text' required='true') #{undefined===message ? '' : message.message_text}
     button.btn.btn-primary(type='submit') Submit
 
-  if errors
-    ul(style='margin-top: 16px;')
-      for error in errors
-        li(style='color: red;')
-            b !{error.msg}

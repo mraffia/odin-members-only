@@ -3,9 +3,6 @@ extends layout
 block content
   h1= title
 
-  p(style='color: green;') 
-    b #{undefined===notice ? '' : notice}
-
   form(method='POST' action='')
     div.form-group
       label(for='username') Username:
@@ -14,9 +11,3 @@ block content
       label(for='password') Password:
       input#password.form-control(type='password', name='password' required='true')
     button.btn.btn-primary(type='submit') Log In
-
-  if errors
-    ul(style='margin-top: 16px;')
-      for error in errors
-        li(style='color: red;')
-            b !{error.msg}

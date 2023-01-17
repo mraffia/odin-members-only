@@ -6,6 +6,12 @@ block content
   p(style='color: red;') 
     b #{undefined===notice ? '' : notice}
 
+  if errors
+    ul(style='margin-top: 10px;')
+      for error in errors
+        li(style='color: red;')
+            b !{error.msg}
+
   p #[strong If you can answer this question correctly, you will become a member.]
 
   p #[em "Riddle me this, I'm always in front of you but you can never see me. What am I?"]
@@ -16,8 +22,3 @@ block content
       input#answer.form-control(type='text', placeholder='Answer' name='answer' required='true')
     button.btn.btn-primary(type='submit') Submit
 
-  if errors
-    ul(style='margin-top: 16px;')
-      for error in errors
-        li(style='color: red;')
-            b !{error.msg}
