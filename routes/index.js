@@ -25,9 +25,9 @@ router.post("/jointheclub/:id", user_controller.user_jointheclub_post);
 
 /// MESSAGE ROUTES ///
 
-router.get("/message-create", message_controller.message_create_get);
+router.get("/message-create/:userid", message_controller.message_create_get);
 
-router.post("/message-create", message_controller.message_create_post);
+router.post("/message-create/:userid", message_controller.message_create_post);
 
 router.get("/message-delete/:id", message_controller.message_delete_get);
 
