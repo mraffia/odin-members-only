@@ -19,20 +19,20 @@ router.get("/login", user_controller.user_login_get);
 
 // router.get("/logout", user_controller.user_logout_get);
 
-router.get("/jointheclub/:id", user_controller.user_jointheclub_get);
+router.get("/user/:id/jointheclub", user_controller.user_jointheclub_get);
 
-router.post("/jointheclub/:id", user_controller.user_jointheclub_post);
+router.post("user/:id/jointheclub", user_controller.user_jointheclub_post);
 
 
 /// MESSAGE ROUTES ///
 
-router.get("/message-create/:userid", message_controller.message_create_get);
+router.get("/message/:userid/create", message_controller.message_create_get);
 
-router.post("/message-create/:userid", message_controller.message_create_post);
+router.post("/message/:userid/create", message_controller.message_create_post);
 
-router.get("/message-delete/:id", message_controller.message_delete_get);
+router.get("/message/:id/delete", message_controller.message_delete_get);
 
-router.post("/message-delete/:id", message_controller.message_delete_post);
+router.post("/message/:id/delete", message_controller.message_delete_post);
 
 
 module.exports = router;
