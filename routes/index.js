@@ -21,7 +21,7 @@ router.get("/login", user_controller.user_login_get);
 
 router.get("/user/:id/jointheclub", user_controller.user_jointheclub_get);
 
-router.post("user/:id/jointheclub", user_controller.user_jointheclub_post);
+router.post("/user/:id/jointheclub", user_controller.user_jointheclub_post);
 
 
 /// MESSAGE ROUTES ///
